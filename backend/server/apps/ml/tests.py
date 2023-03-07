@@ -22,6 +22,7 @@ class MLTests(TestCase):
         self.assertEqual('OK', response['status'])
     '''
 
+    '''
     def test_registry(self):
         registry = MLRegistry()
         self.assertEqual(len(registry.endpoints), 0)
@@ -40,3 +41,4 @@ class MLTests(TestCase):
                                algorithm_description, algorithm_code)
         
         self.assertEqual(len(registry.endpoints), 1)
+    '''

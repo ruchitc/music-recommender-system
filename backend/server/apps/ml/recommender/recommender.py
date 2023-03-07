@@ -9,12 +9,18 @@ from sklearn.preprocessing import MinMaxScaler
 
 from decouple import config
 
+import json
+
+import os
+from server.settings import BASE_DIR
+
 
 class Recommender:
-    def __init__(self, filePath="..\..\..\..\..\dataset\SpotifyFeatures.csv"):
+    def __init__(self):
         path_to_artifacts = "../../../notebook/"
         # self.path_to_dataset = "D:\programsData\python\projects\music-recommender-system\dataset\SpotifyFeatures.csv"
-        self.path_to_dataset = filePath
+        # self.path_to_dataset = "..\..\..\..\..\dataset\SpotifyFeatures.csv"
+        self.path_to_dataset = os.path.join(BASE_DIR, '..\..\dataset\SpotifyFeatures.csv')
 
         client_id = config("client_id")
         client_secret = config("client_secret")
@@ -76,7 +82,9 @@ class Recommender:
     # def postProcessing(self):
     #     pass
 
-    def computeRecommendation(self, playlist_link):
+    def computeRecommendation(self, json_obj):
+        # data = json.loads(json_obj)
+        playlist_link = json_obj['link']
         try:
             self.loadDataset()
             self.loadPlaylist(playlist_link)
